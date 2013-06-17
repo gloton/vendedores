@@ -1,0 +1,14 @@
+#ingnorar contenido de la carpeta git
+.git/
+#ingnorar contenido de la carpeta settings de zend studio
+.settings/
+#ingnorar archivo buildpath de zend studio
+.buildpath
+#ingnorar archivo project de zend studio
+.project
+#ignorar todos los archivo que comiencen con ~
+~*
+error_log
+#para joomla
+configuration.php
+administrator/components/com_akeeba

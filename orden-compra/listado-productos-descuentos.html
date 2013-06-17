@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+	<!-- JAGL inicio utilizando smoke para validar porcentaje maximo de descuento -->
+	<!-- include these -->
+	<link rel="stylesheet" href="../../lib/smoke/smoke.css" type="text/css" media="screen" />  
+	<script type="text/javascript" src="../../lib/smoke/smoke.min.js"></script>
+	<!-- you only need this if you want to include a theme...duh -->
+	<link id="theme" rel="stylesheet" href="../../lib/smoke/themes/default.css" type="text/css" media="screen" />	<!-- styles/js for the demo page. ignore them...or don't. i don't really care. -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('.porc_desc').click(function() {
+			//$(this).parent().parent().find('td:lt(1) input').addClass('padrecito');
+			var cantidad_productos = parseInt($(this).parent().parent().find('td:lt(1) input').val());
+			var id_producto = $(this).parent().parent().find('td:lt(1) input').attr("id");
+			//oc_total_valor_producto valor del producto sin descuento
+			var oc_total_producto_sindesc = parseInt($(this).parent().parent().find('td:eq(2) input').val());	
+			
+			//alert(id_producto);
+			switch (id_producto) {
+			    case "cant":
+			    	//Indumax_foliar
+			    	if (cantidad_productos <= 3) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 3 && cantidad_productos <= 10) {
+			    		descuento_producto = 25;
+			    	} else if (cantidad_productos > 10 && cantidad_productos <= 20) {
+			    		descuento_producto = 45;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 80) {
+			    		descuento_producto = 60;
+			    	} else if (cantidad_productos > 80 && cantidad_productos <= 200) {
+			    		descuento_producto = 65;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 70;
+			    	}
+			    	break;
+			    case "cant2":
+			    	//Enzimark 5 litros :
+			    	if (cantidad_productos <= 3) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 3 && cantidad_productos <= 10) {
+			    		descuento_producto = 25;
+			    	} else if (cantidad_productos > 10 && cantidad_productos <= 20) {
+			    		descuento_producto = 45;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 80) {
+			    		descuento_producto = 60;
+			    	} else if (cantidad_productos > 80 && cantidad_productos <= 200) {
+			    		descuento_producto = 65;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 70;
+			    	}			    		
+			       break;
+			    case "cant3":
+			    	//Lactoplus 5 litros : 
+			    	if (cantidad_productos <= 3) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 3 && cantidad_productos <= 10) {
+			    		descuento_producto = 15;
+			    	} else if (cantidad_productos > 10 && cantidad_productos <= 20) {
+			    		descuento_producto = 25;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 50) {
+			    		descuento_producto = 33;
+			    	} else if (cantidad_productos > 50 && cantidad_productos <= 100) {
+			    		descuento_producto = 38;
+			    	} else if (cantidad_productos > 100 && cantidad_productos <= 500) {
+			    		descuento_producto = 45;
+			    	}			    		
+			       break;
+			    case "cant5":
+			    	//Micotric 5kg :
+			    	//falta que me envien la respuesta sobre este producto		    		
+			       break;
+			    case "cant6":
+			    	//Saniplant  bolsa de 2 kg : 
+			    	if (cantidad_productos <= 9) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 9 && cantidad_productos <= 20) {
+			    		descuento_producto = 12;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 50) {
+			    		descuento_producto = 20;
+			    	} else if (cantidad_productos > 50 && cantidad_productos <= 100) {
+			    		descuento_producto = 28;
+			    	} else if (cantidad_productos > 100 && cantidad_productos <= 200) {
+			    		descuento_producto = 35;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 40;
+			    	} else if (cantidad_productos > 500 && cantidad_productos <= 1000) {
+			    		descuento_producto = 45;
+			    	}
+			       break;
+			    case "cant7":
+			    	//Multigranador 5 litros : 
+			    	if (cantidad_productos <= 3) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 3 && cantidad_productos <= 10) {
+			    		descuento_producto = 25;
+			    	} else if (cantidad_productos > 10 && cantidad_productos <= 20) {
+			    		descuento_producto = 45;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 80) {
+			    		descuento_producto = 60;
+			    	} else if (cantidad_productos > 80 && cantidad_productos <= 200) {
+			    		descuento_producto = 65;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 70;
+			    	}
+			    	break;
+			    case "cant8":
+			    	//MasCuaja 5 litros :
+			    	if (cantidad_productos <= 3) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 3 && cantidad_productos <= 10) {
+			    		descuento_producto = 25;
+			    	} else if (cantidad_productos > 10 && cantidad_productos <= 20) {
+			    		descuento_producto = 45;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 80) {
+			    		descuento_producto = 60;
+			    	} else if (cantidad_productos > 80 && cantidad_productos <= 200) {
+			    		descuento_producto = 65;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 70;
+			    	}
+			    	break;
+			    case "cant9":
+			    	//Saniplant 5 litros :
+			    	if (cantidad_productos <= 9) {
+			    		descuento_producto = 10;
+			    	} else if (cantidad_productos > 9 && cantidad_productos <= 20) {
+			    		descuento_producto = 15;
+			    	} else if (cantidad_productos > 20 && cantidad_productos <= 50) {
+			    		descuento_producto = 25;
+			    	} else if (cantidad_productos > 50 && cantidad_productos <= 100) {
+			    		descuento_producto = 33;
+			    	} else if (cantidad_productos > 100 && cantidad_productos <= 200) {
+			    		descuento_producto = 38;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 45;
+			    	} else if (cantidad_productos > 500 && cantidad_productos <= 1000) {
+			    		descuento_producto = 50;
+			    	}
+			    	break;
+			    case "cant10":
+			    	//Yoymark 1 litros :
+			    	if (cantidad_productos <= 15) {
+			    		descuento_producto = 0;
+			    	} else if (cantidad_productos > 15 && cantidad_productos <= 50) {
+			    		descuento_producto = 15;
+			    	} else if (cantidad_productos > 50 && cantidad_productos <= 100) {
+			    		descuento_producto = 30;
+			    	} else if (cantidad_productos > 100 && cantidad_productos <= 200) {
+			    		descuento_producto = 45;
+			    	} else if (cantidad_productos > 200 && cantidad_productos <= 500) {
+			    		descuento_producto = 51;
+			    	} else if (cantidad_productos > 500 && cantidad_productos <= 1000) {
+			    		descuento_producto = 55;
+			    	}
+			    	break;				    	
+			    default:
+			    	alert ("Ninguna de las anteriores");
+			} 
+			//alert(descuento_producto);
+			smoke.prompt('Ingrese % de descuento con un limite '+descuento_producto + '%',function(e){
+				var porcentaje_ingresado = parseInt(e);
+				/*
+				alert(porcentaje_ingresado);
+				*/
+				if (descuento_producto >= porcentaje_ingresado) {
+					descuento_producto = parseInt(descuento_producto)/100;
+					$(this).parent().parent().find('td:eq(2) input').val() = oc_total_producto_sindesc * descuento_producto;
+					alert(oc_total_producto_sindesc);
+					smoke.alert('Descuento realizado!!!.');
+				} else {
+					smoke.alert('Descuento invalido por superar el limite de '+ descuento_producto + '%');
+				}
+			});				
+
+		});
+
+	});		
+	</script>	
+	<!-- JAGL fin utilizando smoke para validar porcentaje maximo de descuento -->
+</head>
+
+<body>
+<!-- JAGL inicio lista de productos -->
+<table width="480" border="0" style="font-size: 1.2em;">
+							<tbody>
+								<tr>
+									<td>&nbsp;</td>
+									<td>
+										<table width="246" border="0">
+											<tbody>
+												<tr>
+													<td><div style="text-align: center;">Cantidad</div></td>
+													<td><div style="text-align: center;">Precio Unitario </div></td>
+													<td><div style="text-align: center;">Total</div></td>
+													<td><div style="text-align: center;">Desc</div></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Indumax_foliar :</td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant" id="cant" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="39500" name="precun" /></td>
+													<td><input size="13" value="0" name="tot" readonly="readonly" onfocus="multiplicar();" /></td>
+                                                    <td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Enzimark 5 litros : </td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant2" id="cant2" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="39500" name="precun2" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot2" readonly="readonly" onfocus="multiplicar2();" /></td>
+                                                    <td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Lactoplus 5 litros : </td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant3" id="cant3" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="35000" name="precun3" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot3" readonly="readonly" onfocus="multiplicar3();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Micotric 5kg : </td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant5" id="cant5" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="precun5" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot5" readonly="readonly" onfocus="multiplicar5();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Saniplant 2kg :</td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant6" id="cant6" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="39500" name="precun6" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot6" readonly="readonly" onfocus="multiplicar6();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Multigranador 5 litros : </td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant7" id="cant7" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="39500" name="precun7" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot7" readonly="readonly" onfocus="multiplicar7();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>MasCuaja 5 litros :</td>
+									<td>
+									  <table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant8" id="cant8" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="39500" name="precun8" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot8" readonly="readonly" onfocus="multiplicar8();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Saniplant 5 litros :</td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant9" id="cant9" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="45000" name="precun9" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot9" readonly="readonly" onfocus="multiplicar9();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                   
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Yoymark 1 litros :</td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant10" id="cant10" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="22000" name="precun10" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot10" readonly="readonly" onfocus="multiplicar10();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>Aminoplant 5 litros : </td>
+									<td>
+										<table width="247" border="0">
+											<tbody>
+												<tr>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="cant11" id="cant11" /></td>
+													<td><input class="borrar" onkeypress="return solonumeros(event)" size="13" value="0" name="precun11" /></td>
+													<td><input onkeypress="return solonumeros(event)" size="13" value="0" name="tot11" readonly="readonly" onfocus="multiplicar11();" /></td>
+													<td><img class="porc_desc" src="../../img/porcentaje.png" alt="" /></td>                                                    
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>				
+								<tr>
+									<td><strong>Total : </strong></td>
+									<td><input class="required" size="40" style="margin-left: 2px; width: 82px;" name="totalCompra" readonly="readonly" /></td>
+								</tr>
+								<tr>
+									<td><strong>Adeudado : </strong></td>
+									<td><input class="required" size="40" style="margin-left: 2px; width: 82px;" name="total_adeudado" readonly="readonly" /></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td>Pago inicial : </td>
+									<td>
+										<span style="display:inline-block; font-size: 14px;">$ </span>
+										<input type="text" name="pago_inicial" value="Pago inicial" class="borrarPagoInicial" style="width: 80px; color:#666;" onchange="totalAdeudado();" /></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+								</tr>								
+								<tr>
+									<td>Giro : </td>
+									<td><em>*</em><input size="40" name="gir" class="required" /></td>
+								</tr>
+								<tr>
+									<td style="height: 28px;">Formas de Pago : </td>
+									<!--  
+									<td><input onkeypress="return validar(event)" size="40" name="conpag"></td>
+									-->
+									<td>
+										<div id="optcontado" style="display: inline;"><input id="radio_contado" class="waypay" type= "radio" name ="conpag" value= "1" checked="checked" /><span class="pago">Contado</span></div>
+										<div id="optcheque" style="display: inline;"><input id="radio_cheque" class="waypay" type= "radio" name ="conpag" value= "2" /><span class="pago">Cheque</span></div>
+										<div id="optpagare" style="display: inline;"><input id="radio_pagare" class="waypay" type= "radio" name ="conpag" value= "3" /><span class="pago">Pagaré</span></div>
+									</td>
+								</tr>
+								<tr>
+									<td style="height: 28px;">&nbsp;</td>
+									<!--  
+									<td><input onkeypress="return validar(event)" size="40" name="conpag"></td>
+									-->
+									<td><div id="detallespago"></div></td>
+								</tr>
+							</tbody>
+						</table>
+<!-- JAGL fin lista de productos -->						
+</body>
+</html>
