@@ -1,4 +1,4 @@
 $(document).ready(function(){
 	
-	$('input[type=checkbox]').tzCheckbox({labels:['Enable','Disable']});
+	$('input[type=checkbox]').tzCheckbox({labels:['Habilidado','Deshabilitado']});
 });
