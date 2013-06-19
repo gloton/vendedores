@@ -1,6 +1,8 @@
 <?php 
 include_once("../../lib/class.php");
-print_r($_SESSION);
+//print_r($_SESSION);
+$sql_productos_mail = "SELECT id_produto,nombre FROM productos_mail;";
+$query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die("No se realizo la consulta");
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,20 +16,30 @@ print_r($_SESSION);
 
 </head>
 <body>
-
+<!-- inicio mensaje alerta -->
+<div class="container">  
+<div class="row">  
+<div class="span4">  
+<div class="alert">  
+  <a class="close" data-dismiss="alert">�</a>  
+  <strong>Warning!</strong> Best check yo self, you're not looking too good.  
+</div>  
+</div>  
+</div>  
+</div>
+<!-- fin mensaje alerta -->
 <div id="page">
 	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="post" action="./completar-guardar.php">
-		<label>Nombre de etiqueta</label>
-		<input type="text" class="span3" placeholder="Escribe algo…">	
+		<label>Nombre del cliente : </label>
+		<input type="text" class="span3" placeholder="Escriba el nombre…">	
     	<ul>
-        	<li><label for="ch_location">Enable location tracking: </label><input type="checkbox" id="ch_location" name="ch_location" /></li>
-	        <li><label for="ch_showsearch">Include me in search results: </label><input type="checkbox" id="ch_showsearch" name="ch_showsearch" /></li>
-	        <li><label for="opcion3">Esta es la opcion tercera</label><input type="checkbox" id="opcion3" name="opcion3" /></li>
-	        <li><label for="opcion4">Esta es la opcion cuarta</label><input type="checkbox" id="opcion4" name="opcion4" /></li>
+    	<?php while ($fila = mysql_fetch_array($query_productos_mail)) : ?>
+        	<li><label for="<?php echo $fila["id_produto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_produto"]; ?>" name="<?php echo $fila["id_produto"]; ?>" /></li>
+    	<?php endwhile; ?>
         </ul>
-        <button type="submit" class="btn">Enviar</button>
+        <button type="submit" class="btn">Guardar</button>
     </form>
-
+	<p><a href="#" class="btn btn-primary btn-large">Volver al portal vendedores</a></p>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 <script src="js/jquery.tzCheckbox.js"></script>
