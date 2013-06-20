@@ -21,7 +21,7 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <div class="row">  
 <div class="span4">  
 <div class="alert">  
-  <a class="close" data-dismiss="alert">�</a>  
+  <a class="close" data-dismiss="alert">�</a>  
   <strong>Warning!</strong> Best check yo self, you're not looking too good.  
 </div>  
 </div>  
@@ -31,7 +31,7 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <div id="page">
 	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="post" action="./completar-guardar.php">
 		<label>Nombre del cliente : </label>
-		<input type="text" class="span3" placeholder="Escriba el nombre…">	
+		<input name="nombre" type="text" class="span3" placeholder="Escriba el nombre…">	
     	<ul>
     	<?php while ($fila = mysql_fetch_array($query_productos_mail)) : ?>
         	<li><label for="<?php echo $fila["id_produto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_produto"]; ?>" name="<?php echo $fila["id_produto"]; ?>" /></li>
