@@ -1,6 +1,6 @@
 <?php
 include_once '../../lib/class.php';
-//print_r($_SESSION);
+print_r($_SESSION);//Array ( [nombre] => Marcelo [id_perfil] => 4 [apellidos] => Salas [correo] => prueba1@w7.cl [id_usuario] => 204 [perfil] => vendedor ) 
 
 //obtengo los datos del formulario
 $productos = $_POST;
@@ -15,7 +15,7 @@ if (($nro_campos > 3) && ($nro_campos < 1)) {
 }
 $detalles =array();
 $i = 0;
-foreach ($productos as $indice => $valor){
+foreach ($productos as $indice => $valor) {
 	
 	if ($valor == "on") {
 		$sql_detalle = "SELECT nombre,detalle FROM productos_mail WHERE id_produto=$indice";
@@ -34,7 +34,7 @@ foreach ($productos as $indice => $valor){
 }
 
 //imprimiendo en pantalla los detalles de los productos elegidos
-echo $body_detalles;
+//echo $body_detalles;
 
 $nro_productos = count($body_nombre);
 
@@ -62,5 +62,7 @@ $body_cabecera .= 'interés por nuestro(s) producto(s) (<b>'.$nombre_elegidos.'<
 $body_cabecera .= 'comento a usted el funcionamiento de nuestros producto(s) tal(es) como (<b>'.$nombre_elegidos.'</b>) ';
 $body_cabecera .= ', es el siguiente respectivamente:';
 $body_cabecera .= '</p>';
+
+$body_cuerpo = $body_cabecera . $body_detalles;
 
 ?>
