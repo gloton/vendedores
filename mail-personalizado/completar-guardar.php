@@ -21,12 +21,20 @@ foreach ($productos as $indice => $valor){
 		$sql_detalle = "SELECT nombre,detalle FROM productos_mail WHERE id_produto=$indice";
 		$query_detalle = mysql_query($sql_detalle, Conectar::con()) or die("No se pudo ejecutar consulta");			
 		$detalles = mysql_fetch_array($query_detalle);
+		
+		#el 0 es el primer campo que se llama en el select, en este caso nombre, por lo que [1] seria detalle
+		
 		$body_nombre[$i] = $detalles[0];
 		$i++;
 	}
-	//el 0 es el primer campo que se llama en el select, en este caso nombre, por lo que [1] seria detalle
+	
+	
+	//$body_detalles contendra el detalle de los productos elegidos
 	$body_detalles .= $detalles[1];
 }
+
+//imprimiendo en pantalla los detalles de los productos elegidos
+echo $body_detalles;
 
 $nro_productos = count($body_nombre);
 
@@ -54,9 +62,5 @@ $body_cabecera .= 'interés por nuestro(s) producto(s) (<b>'.$nombre_elegidos.'<
 $body_cabecera .= 'comento a usted el funcionamiento de nuestros producto(s) tal(es) como (<b>'.$nombre_elegidos.'</b>) ';
 $body_cabecera .= ', es el siguiente respectivamente:';
 $body_cabecera .= '</p>';
-//print_r($body_nombre);
-//echo $nro_productos;
-echo $body_cabecera;
-
 
 ?>
