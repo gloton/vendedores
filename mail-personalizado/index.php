@@ -32,6 +32,8 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="post" action="./completar-guardar.php">
 		<label>Nombre del cliente : </label>
 		<input name="nombre" type="text" class="span3" placeholder="Escriba el nombre…">	
+		<label>Correo del cliente : </label>
+		<input name="correo_cli" type="text" class="span3" placeholder="Escriba el correo…">	
     	<ul>
     	<?php while ($fila = mysql_fetch_array($query_productos_mail)) : ?>
         	<li><label for="<?php echo $fila["id_produto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_produto"]; ?>" name="<?php echo $fila["id_produto"]; ?>" /></li>
