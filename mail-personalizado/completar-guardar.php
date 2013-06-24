@@ -38,7 +38,7 @@ $nro_productos = count($body_nombre);
 switch ($nro_productos) {
     case 0:
     	//validar que haya ingresado por lo menos un producto
-        echo "Error: Debe por lo menos haber elegido un producto";
+        echo "<strong>Error!</strong>: Debe por lo menos haber elegido un producto";
         exit();
         break;
     case 1:

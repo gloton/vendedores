@@ -34,9 +34,10 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <div class="container">  
 	<div class="row">  
 		<div class="span4">  
-			<div class="alert">  
-				<a class="close" data-dismiss="alert">×</a>  
-				<strong>Warning!</strong> Best check yo self, you're not looking too good.  
+			<div class="alert alert-error">  
+				<a class="close" data-dismiss="alert">×</a>
+				<div id="mensaje_respuesta">
+				</div>
 			</div>  
 		</div>  
 	</div>  
