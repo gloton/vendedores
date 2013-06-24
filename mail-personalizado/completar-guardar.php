@@ -1,8 +1,7 @@
 <?php
 include_once '../../lib/class.php';
 include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
-echo "ajax ok2";
-exit();
+
 //print_r($_SESSION);//Array ( [nombre] => Marcelo [id_perfil] => 4 [apellidos] => Salas [correo] => prueba1@w7.cl [id_usuario] => 204 [telefono] => 111111111 [perfil] => vendedor )
 
 //obtengo los datos del formulario
@@ -11,11 +10,6 @@ $productos = $_POST;
 exit(); */
 $nro_campos = count($productos);
 
-//validar que haya ingresado [1,3] productos
-if (($nro_campos > 3) && ($nro_campos < 1)) {
-	//devolver a la pagina creacion con orden desplegar error
-	;
-}
 $detalles =array();
 $i = 0;
 foreach ($productos as $indice => $valor) {
@@ -43,7 +37,9 @@ $nro_productos = count($body_nombre);
 
 switch ($nro_productos) {
     case 0:
+    	//validar que haya ingresado por lo menos un producto
         echo "Error: Debe por lo menos haber elegido un producto";
+        exit();
         break;
     case 1:
         $nombre_elegidos = $body_nombre[0];

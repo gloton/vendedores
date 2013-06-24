@@ -13,15 +13,30 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <link rel="stylesheet" type="text/css" href="http://<?php echo $servidor;?>lib/bootstrap/css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.tzCheckbox.css" />
+<style type="text/css">
+#contenedor_mensaje_respuesta {
+	position: fixed;
+	right: 5%;
+	top: 8%;
+	width: 368px;
+	z-index: 1000;
+	box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);	
+		-webkit-box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);
+        
+}
+#contenedor_mensaje_respuesta .alert {
+	margin-bottom: 0;
+}
+</style>
 <script type="text/javascript" src="js/ajax.js"></script>
 </head>
 <body>
 <!-- inicio mensaje alerta -->
-<div class="container">  
+<div id="contenedor_mensaje_respuesta" class="container">  
 	<div class="row">  
 		<div class="span4">  
-			<div class="alert">  
-			  <a class="close" data-dismiss="alert">�</a>  
+			<div class="alert alert-success">  
+			  <a class="close icon-remove" data-dismiss="alert"></a>  
 			  <div id="mensaje_respuesta"></div>
 			</div>  
 		</div>  
