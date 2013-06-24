@@ -1,7 +1,8 @@
 <?php
 include_once '../../lib/class.php';
 include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
-
+echo "ajax ok2";
+exit();
 //print_r($_SESSION);//Array ( [nombre] => Marcelo [id_perfil] => 4 [apellidos] => Salas [correo] => prueba1@w7.cl [id_usuario] => 204 [telefono] => 111111111 [perfil] => vendedor )
 
 //obtengo los datos del formulario
@@ -88,10 +89,6 @@ $body_pie .= '</p>';
 $body_cuerpo = $body_cabecera . $body_detalles . $body_pie;
 //echo $body_cuerpo;
 
-/*
-INSERT INTO `litarcl_bdlitar`.`mails_personalizados` (`id`, `nombre_remitente`, `mail_remitente`, `nombre_destinatario`, `mail_destinatario`, `contenido`, `id_usuario`, `estado`) VALUES (NULL, 'Jorge Gatica', 'jorge@w7.cl', 'Margot Contreras', 'margotcontreras@yahoo.es', '<p>Este es el contenido <b>Principal</b>
-</p>', '204', '0');
-*/
 $sql_agregar_contenido = "INSERT INTO `litarcl_bdlitar`.`mails_personalizados` (`id`, `nombre_remitente`, `mail_remitente`, `nombre_destinatario`, `mail_destinatario`, `contenido`, `id_usuario`, `estado`) VALUES
 						 (
 						  NULL,

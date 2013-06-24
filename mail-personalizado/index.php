@@ -13,7 +13,7 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <link rel="stylesheet" type="text/css" href="http://<?php echo $servidor;?>lib/bootstrap/css/bootstrap-responsive.css" />
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.tzCheckbox.css" />
-
+<script type="text/javascript" src="js/ajax.js"></script>
 </head>
 <body>
 <!-- inicio mensaje alerta -->
@@ -22,14 +22,14 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 		<div class="span4">  
 			<div class="alert">  
 			  <a class="close" data-dismiss="alert">�</a>  
-			  <strong>Warning!</strong> Best check yo self, you're not looking too good.  
+			  <div id="mensaje_respuesta"></div>
 			</div>  
 		</div>  
 </div>  
 </div>
 <!-- fin mensaje alerta -->
 <div id="page">
-	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="post" action="./completar-guardar.php">
+	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="get">
 		<label>Nombre del cliente : </label>
 		<input name="nombre" type="text" class="span3" placeholder="Escriba el nombre…">	
 		<label>Correo del cliente : </label>
@@ -39,7 +39,7 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
         	<li><label for="<?php echo $fila["id_produto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_produto"]; ?>" name="<?php echo $fila["id_produto"]; ?>" /></li>
     	<?php endwhile; ?>
         </ul>
-        <button type="submit" class="btn">Guardar</button>
+        <button type="button" class="btn" onclick="ejecutarajax();">Guardar</button>
     </form>
 	<p><a href="#" class="btn btn-primary btn-large">Volver al portal vendedores</a></p>
 </div>
