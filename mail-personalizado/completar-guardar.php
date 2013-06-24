@@ -1,5 +1,7 @@
 <?php
 include_once '../../lib/class.php';
+include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
+
 //print_r($_SESSION);//Array ( [nombre] => Marcelo [id_perfil] => 4 [apellidos] => Salas [correo] => prueba1@w7.cl [id_usuario] => 204 [telefono] => 111111111 [perfil] => vendedor )
 
 //obtengo los datos del formulario
@@ -57,6 +59,11 @@ switch ($nro_productos) {
         exit();
         break; 
 }
+
+/*
+ * CONSTRUCCION DEL CONTENIDO DEL MAIL PERSONALIZADO
+*
+* */
 $body_cabecera  = '<p>Estimad(o/a) '.$productos["nombre"].', según lo conversado telefónicamente y dado su ';
 $body_cabecera .= 'interés por nuestro(s) producto(s) (<b>'.$nombre_elegidos.'</b>), ';
 $body_cabecera .= 'comento a usted el funcionamiento de nuestros producto(s) tal(es) como (<b>'.$nombre_elegidos.'</b>) ';
@@ -77,9 +84,10 @@ $body_pie .= 'Mail : '. $_SESSION["correo"] .'<br />';
 $body_pie .= '<a href="http://www.litar.cl">www.litar.cl</a>';
 $body_pie .= '</p>';
 
+//contenido completo del mail
 $body_cuerpo = $body_cabecera . $body_detalles . $body_pie;
-
 //echo $body_cuerpo;
+
 /*
 INSERT INTO `litarcl_bdlitar`.`mails_personalizados` (`id`, `nombre_remitente`, `mail_remitente`, `nombre_destinatario`, `mail_destinatario`, `contenido`, `id_usuario`, `estado`) VALUES (NULL, 'Jorge Gatica', 'jorge@w7.cl', 'Margot Contreras', 'margotcontreras@yahoo.es', '<p>Este es el contenido <b>Principal</b>
 </p>', '204', '0');
@@ -95,5 +103,45 @@ $sql_agregar_contenido = "INSERT INTO `litarcl_bdlitar`.`mails_personalizados` (
 						 '". $_SESSION["id_usuario"] ."',
 						 '0'
 						 );";
-mysql_query($sql_agregar_contenido, Conectar::con()) or die("No se crear el mail");
+$insertar_contenido = mysql_query($sql_agregar_contenido, Conectar::con()) or die("No se pudo crear el mail");
+
+/*
+ * CONSTRUCCION DEL MENSAJE DE ALERTA
+*
+* */
+//mensaje de aviso de ingreso de nuevo mail personalizado
+$destinatario_nombre = "Jorge Gatica";//<------ CAMBIAR
+$destinatario_mail = "jorge@w7.cl";//<------ CAMBIAR
+
+/* $destinatario_nombre = "Juan Tarrason"
+ $destinatario_mail = "jtarrason@litar.cl"; */
+$mail             = new PHPMailer(); //
+$mail->AddReplyTo($_SESSION["correo"], $_SESSION["nombre"] . " " . $_SESSION["apellidos"] );
+$mail->SetFrom($_SESSION["correo"], $_SESSION["nombre"] . " " . $_SESSION["apellidos"] );
+
+$mail->AddAddress($destinatario_mail, $destinatario_nombre);
+$mail->Subject    = "Nuevo mail personaliazado";
+$mail->AltBody    = "Mensaje opcional en caso de que solo se acepte mensajes de texto sin formato";
+
+//evalua si se guardo en la BD el mail personalizado
+if ($insertar_contenido) {
+	$mensaje_alerta = '<p>El vendedor '. $_SESSION["nombre"] . " " . $_SESSION["apellidos"] .' a creado un nuevo mail personalizado';
+	$mensaje_alerta .= '</p>';
+	$mail->MsgHTML($mensaje_alerta);
+} else {
+	$mensaje_alerta = '<p>El vendedor '. $_SESSION["nombre"] . " " . $_SESSION["apellidos"] .' no pudo crear un nuevo mail personalizado';
+	$mensaje_alerta .= '</p>';
+	$mail->MsgHTML($mensaje_alerta);
+}
+
+if(!$mail->Send()) {
+	echo "No se pudo enviar el mail de alerta";
+	exit();
+	$mensaje_alerta . "Mailer Error: " . $mail->ErrorInfo;
+	$mail->MsgHTML($mensaje_alerta);
+} else {
+	echo "Si se pudo enviar el mail de alerta";
+	exit();	
+	$mail->MsgHTML($mensaje_alerta);
+}
 ?>

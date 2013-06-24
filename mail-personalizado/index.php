@@ -18,13 +18,13 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <body>
 <!-- inicio mensaje alerta -->
 <div class="container">  
-<div class="row">  
-<div class="span4">  
-<div class="alert">  
-  <a class="close" data-dismiss="alert">�</a>  
-  <strong>Warning!</strong> Best check yo self, you're not looking too good.  
-</div>  
-</div>  
+	<div class="row">  
+		<div class="span4">  
+			<div class="alert">  
+			  <a class="close" data-dismiss="alert">�</a>  
+			  <strong>Warning!</strong> Best check yo self, you're not looking too good.  
+			</div>  
+		</div>  
 </div>  
 </div>
 <!-- fin mensaje alerta -->
