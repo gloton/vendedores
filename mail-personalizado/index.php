@@ -14,34 +14,33 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.tzCheckbox.css" />
 <style type="text/css">
-#contenedor_mensaje_respuesta {
+.container {
 	position: fixed;
 	right: 5%;
 	top: 8%;
 	width: 368px;
 	z-index: 1000;
-	box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);	
-		-webkit-box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);
-        
 }
-#contenedor_mensaje_respuesta .alert {
+.container .alert {
 	margin-bottom: 0;
+	box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);	
+		-webkit-box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);	
 }
 </style>
-<script type="text/javascript" src="js/ajax.js"></script>
+
 </head>
 <body>
 <!-- inicio mensaje alerta -->
-<div id="contenedor_mensaje_respuesta" class="container">  
+<div class="container">  
 	<div class="row">  
 		<div class="span4">  
-			<div class="alert alert-success">  
-			  <a class="close icon-remove" data-dismiss="alert"></a>  
-			  <div id="mensaje_respuesta"></div>
+			<div class="alert">  
+				<a class="close" data-dismiss="alert">×</a>  
+				<strong>Warning!</strong> Best check yo self, you're not looking too good.  
 			</div>  
 		</div>  
+	</div>  
 </div>  
-</div>
 <!-- fin mensaje alerta -->
 <div id="page">
 	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="get">
@@ -58,10 +57,11 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
     </form>
 	<p><a href="#" class="btn btn-primary btn-large">Volver al portal vendedores</a></p>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script src="js/jquery.tzCheckbox.js"></script>
-<script src="js/script.js"></script>
-
-<script type="text/javascript" src="http://<?php echo servidor;?>lib/bootstrap/css/js/bootstrap.js"></script>	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tzCheckbox.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="http://<?php echo $servidor;?>lib/bootstrap/js/bootstrap.js"></script>	
+<script type="text/javascript" src="http://<?php echo $servidor;?>lib/bootstrap/js/bootstrap-alert.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>	
 </body>
 </html>
