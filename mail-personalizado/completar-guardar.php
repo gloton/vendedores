@@ -32,21 +32,27 @@ foreach ($productos as $indice => $valor) {
 //echo $body_detalles;
 
 $nro_productos = count($body_nombre);
-
+?>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<?php 
 switch ($nro_productos) {
     case 0:
-    	$z++;
+    	$_SESSION["contador"]=$_SESSION["contador"]+1;
     	//validar que haya ingresado por lo menos un producto
 ?>
 <script type="text/javascript">
-function ocultar_mensaje () {
-	
-}
+	$(document).ready( function() {
+	    $( ".close").click(function (event){
+	          $(this).parent().parent().parent().css("display","none");
+	          event.stopPropagation();
+	          
+	    });
+	});
 </script>
-	<div class="row">  
+	<div id="row<?php echo $_SESSION["contador"]; ?>" class="row">  
 		<div class="span4">  
 			<div class="alert alert-error">  
-				<a class="close" data-dismiss="alert" onclick="ocultar_mensaje()">×</a>
+				<a class="close" data-dismiss="alert">×</a>
 				<div id="mensaje_respuesta">
 					<span>Error!:</span> Debe por lo menos haber elegido un producto
 				</div>

@@ -1,10 +1,10 @@
 $(document).ready(function() {
 	$('input[type=checkbox]').tzCheckbox({labels:['Habilidado','Deshabilitado']});
-    $('#btn_guardar').click(function() {
-    	//instrucciones
-    	$('.container').css("display","block");
-    });
     /*AJAX*/
+	$('#btn_guardar').click(function() {
+		//instrucciones
+		$('.container').css("display","block");
+	});
     // definimos las opciones del plugin AJAX FORM
     var opciones= {
                        beforeSubmit: mostrarLoader, //funcion que se ejecuta antes de enviar el form
@@ -24,3 +24,4 @@ $(document).ready(function() {
                   $(".container").append(responseText+"<br />");
      };    
 });
+
