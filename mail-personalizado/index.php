@@ -26,12 +26,20 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 	box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);	
 		-webkit-box-shadow:  3px 3px 3px 3px rgba(55, 55, 55, 0.3);	
 }
+<?php 
+if (!empty($_SESSION["mensaje"])) {
+	$desplegar_alerta = 'style="display:block;"';
+} else {
+	$desplegar_alerta = 'style="display:none;"';
+}
+?>
+
 </style>
 
 </head>
 <body>
 <!-- inicio mensaje alerta -->
-<div class="container">  
+<div class="container" <?php echo $desplegar_alerta; ?>>  
 	<div class="row">  
 		<div class="span4">  
 			<div class="alert alert-error">  
@@ -46,15 +54,15 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <div id="page">
 	<form name="fmr_ingreso_datos" style="width: 600px" class="well" method="get">
 		<label>Nombre del cliente : </label>
-		<input name="nombre" type="text" class="span3" placeholder="Escriba el nombre…">	
+		<input name="nombre" type="text" class="span3" placeholder="Escriba el nombre...">	
 		<label>Correo del cliente : </label>
-		<input name="correo_cli" type="text" class="span3" placeholder="Escriba el correo…">	
+		<input name="correo_cli" type="text" class="span3" placeholder="Escriba el correo...">	
     	<ul>
     	<?php while ($fila = mysql_fetch_array($query_productos_mail)) : ?>
         	<li><label for="<?php echo $fila["id_produto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_produto"]; ?>" name="<?php echo $fila["id_produto"]; ?>" /></li>
     	<?php endwhile; ?>
         </ul>
-        <button type="button" class="btn" onclick="ejecutarajax();">Guardar</button>
+        <button id="btn_guardar" type="button" class="btn" onclick="ejecutarajax();">Guardar</button>
     </form>
 	<p><a href="#" class="btn btn-primary btn-large">Volver al portal vendedores</a></p>
 </div>

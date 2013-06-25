@@ -4,4 +4,8 @@ $(document).ready(function(){
         //instrucciones
         $('.container').css("display","none");
 	});
+    $('#btn_guardar').click(function() {
+    	//instrucciones
+    	$('.container').css("display","block");
+    });
 });
