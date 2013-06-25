@@ -6,8 +6,6 @@ include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
 
 //obtengo los datos del formulario
 $productos = $_POST;
-/* print_r($_POST);
-exit(); */
 $nro_campos = count($productos);
 
 $detalles =array();
@@ -38,7 +36,7 @@ $nro_productos = count($body_nombre);
 switch ($nro_productos) {
     case 0:
     	//validar que haya ingresado por lo menos un producto
-        $_SESSION["mensaje"]= "<strong>Error!</strong>: Dedbe por lo menos haber elegido un producto";
+        $_SESSION["mensaje"]= "<strong>Error!</strong>: Debe por lo menos haber elegido un producto";
         echo $_SESSION["mensaje"];
         exit();
         break;
