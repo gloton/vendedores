@@ -49,6 +49,7 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
     	<?php endwhile; ?>
         </ul>
         <button id="btn_guardar" type="submit" class="btn">Guardar</button>
+        <div id="ajax_loader" style="margin-top: 10px;padding-left: 20px;"><img id="loader_gif" src="images/loader.gif" style=" display:none;"/></div>
     </form>
 	<p><a href="#" class="btn btn-primary btn-large">Volver al portal vendedores</a></p>
 </div>

@@ -3,7 +3,18 @@ include_once '../../lib/class.php';
 include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
 
 //print_r($_SESSION);//Array ( [nombre] => Marcelo [id_perfil] => 4 [apellidos] => Salas [correo] => prueba1@w7.cl [id_usuario] => 204 [telefono] => 111111111 [perfil] => vendedor )
-
+?>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready( function() {
+	    $( ".close").click(function (event){
+	          $(this).parent().parent().parent().css("display","none");
+	          event.stopPropagation();
+	          
+	    });
+	});
+</script>
+<?php 
 //obtengo los datos del formulario
 $productos = $_POST;
 $nro_campos = count($productos);
@@ -32,29 +43,17 @@ foreach ($productos as $indice => $valor) {
 //echo $body_detalles;
 
 $nro_productos = count($body_nombre);
-?>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<?php 
+
 switch ($nro_productos) {
     case 0:
-    	$_SESSION["contador"]=$_SESSION["contador"]+1;
     	//validar que haya ingresado por lo menos un producto
 ?>
-<script type="text/javascript">
-	$(document).ready( function() {
-	    $( ".close").click(function (event){
-	          $(this).parent().parent().parent().css("display","none");
-	          event.stopPropagation();
-	          
-	    });
-	});
-</script>
 	<div class="row">  
 		<div class="span4">  
 			<div class="alert alert-error">  
 				<a class="close" data-dismiss="alert">×</a>
 				<div id="mensaje_respuesta">
-					<span>Error!:</span> Debe por lo menos haber elegido un producto
+					<span>Error!:</span> Debe por lo menos haber elegido un producto.
 				</div>
 			</div>  
 		</div>  
@@ -73,7 +72,18 @@ switch ($nro_productos) {
         break;
         case 2:
     case ($nro_productos > 3):
-        echo "Error no puede ser mayor a 3";
+?>
+        	<div class="row">  
+        		<div class="span4">  
+        			<div class="alert alert-error">  
+        				<a class="close" data-dismiss="alert">×</a>
+        				<div id="mensaje_respuesta">
+        					<span>Error!:</span> la cantidad de productos, no puede ser mayor a 3.
+        				</div>
+        			</div>  
+        		</div>  
+        	</div> 
+<?php         
         exit();
         break; 
 }
@@ -117,7 +127,7 @@ $sql_agregar_contenido = "INSERT INTO `litarcl_bdlitar`.`mails_personalizados` (
 						 '". $_SESSION["id_usuario"] ."',
 						 '0'
 						 );";
-$insertar_contenido = mysql_query($sql_agregar_contenido, Conectar::con()) or die("No se pudo crear el mail");
+$insertar_contenido = mysql_query($sql_agregar_contenido, Conectar::con()) or die("No se pudo crear el mail personalizaso");
 
 /*
  * CONSTRUCCION DEL MENSAJE DE ALERTA
@@ -141,21 +151,71 @@ $mail->AltBody    = "Mensaje opcional en caso de que solo se acepte mensajes de 
 if ($insertar_contenido) {
 	$mensaje_alerta = '<p>El vendedor '. $_SESSION["nombre"] . " " . $_SESSION["apellidos"] .' a creado un nuevo mail personalizado';
 	$mensaje_alerta .= '</p>';
+?>
+	        	<div class="row">  
+	        		<div class="span4">  
+	        			<div class="alert alert-success">  
+	        				<a class="close" data-dismiss="alert">×</a>
+	        				<div id="mensaje_respuesta">
+	        					<span>Felicitaciones!:</span> Ha creado un mail personalizado correctamente.
+	        				</div>
+	        			</div>  
+	        		</div>  
+	        	</div>
+	        	<br />
+<?php   	
 	$mail->MsgHTML($mensaje_alerta);
 } else {
 	$mensaje_alerta = '<p>El vendedor '. $_SESSION["nombre"] . " " . $_SESSION["apellidos"] .' no pudo crear un nuevo mail personalizado';
 	$mensaje_alerta .= '</p>';
+?>
+		        	<div class="row">  
+		        		<div class="span4">  
+		        			<div class="alert alert-error">  
+		        				<a class="close" data-dismiss="alert">×</a>
+		        				<div id="mensaje_respuesta">
+		        					<span>Error!:</span> No se pudo enviar el mail de aviso de ingreso de nuevo correo personalizado.
+		        				</div>
+		        			</div>  
+		        		</div>  
+		        	</div>
+		        	<br />
+<?php  	
 	$mail->MsgHTML($mensaje_alerta);
 }
 
 if(!$mail->Send()) {
-	$_SESSION["mensaje"]= 'class="alert alert-success"';
-	echo "No se pudo enviar el mail de alerta";
+	//echo "No se pudo enviar el mail de alerta";
+	?>
+	        	<div class="row">  
+	        		<div class="span4">  
+	        			<div class="alert alert-error">  
+	        				<a class="close" data-dismiss="alert">×</a>
+	        				<div id="mensaje_respuesta">
+	        					<span>Error!:</span> No se pudo enviar el mail de aviso de ingreso a Juan Tarrason. Favor informar.
+	        				</div>
+	        			</div>  
+	        		</div>  
+	        	</div> 
+	<?php   	
 	exit();
 	$mensaje_alerta . "Mailer Error: " . $mail->ErrorInfo;
 	$mail->MsgHTML($mensaje_alerta);
 } else {
-	echo "Si se pudo enviar el mail de alerta";
+	//echo "Si se pudo enviar el mail de alerta";
+?>
+	        	<div class="row">  
+	        		<div class="span4">  
+	        			<div class="alert alert-success">  
+	        				<a class="close" data-dismiss="alert alert-success">×</a>
+	        				<div id="mensaje_respuesta">
+	        					<span>Se envio aviso!:</span> Se ha informado a Don Juan Tarrason el ingreso de un nuevo correo personalizado.
+	        				</div>
+	        			</div>  
+	        		</div>  
+	        	</div>
+	        	<br />
+	<?php   	
 	exit();	
 	$mail->MsgHTML($mensaje_alerta);
 }

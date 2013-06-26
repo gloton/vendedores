@@ -16,11 +16,11 @@ $(document).ready(function() {
     
      //lugar donde defino las funciones que utilizo dentro de "opciones"
      function mostrarLoader(){
-              //$("#loader_gif").fadeIn("slow");
+              $("#loader_gif").fadeIn("slow");
      };
      function mostrarRespuesta (responseText){
 		          //alert("Mensaje enviado: "+responseText);
-                  //$("#loader_gif").fadeOut("slow");
+                  $("#loader_gif").fadeOut("slow");
                   $(".container").append(responseText+"<br />");
      };    
 });
