@@ -35,9 +35,25 @@ $nro_productos = count($body_nombre);
 
 switch ($nro_productos) {
     case 0:
+    	$z++;
     	//validar que haya ingresado por lo menos un producto
-        $_SESSION["mensaje"]= "<strong>Error!</strong>: Debe por lo menos haber elegido un producto";
-        echo $_SESSION["mensaje"];
+?>
+<script type="text/javascript">
+function ocultar_mensaje () {
+	
+}
+</script>
+	<div class="row">  
+		<div class="span4">  
+			<div class="alert alert-error">  
+				<a class="close" data-dismiss="alert" onclick="ocultar_mensaje()">×</a>
+				<div id="mensaje_respuesta">
+					<span>Error!:</span> Debe por lo menos haber elegido un producto
+				</div>
+			</div>  
+		</div>  
+	</div> 
+<?php 
         exit();
         break;
     case 1:
@@ -127,6 +143,7 @@ if ($insertar_contenido) {
 }
 
 if(!$mail->Send()) {
+	$_SESSION["mensaje"]= 'class="alert alert-success"';
 	echo "No se pudo enviar el mail de alerta";
 	exit();
 	$mensaje_alerta . "Mailer Error: " . $mail->ErrorInfo;

@@ -1,6 +1,7 @@
 <?php 
 include_once("../../lib/class.php");
 //print_r($_SESSION);
+unset($_SESSION['mensaje']);
 $sql_productos_mail = "SELECT id_produto,nombre FROM productos_mail;";
 $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die("No se realizo la consulta");
 ?>
@@ -33,15 +34,7 @@ $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die
 <body>
 <!-- inicio mensaje alerta -->
 <div class="container">  
-	<div class="row">  
-		<div class="span4">  
-			<div class="alert alert-error">  
-				<a class="close" data-dismiss="alert">×</a>
-				<div id="mensaje_respuesta">
-				</div>
-			</div>  
-		</div>  
-	</div>  
+ 
 </div>  
 <!-- fin mensaje alerta -->
 <div id="page">

@@ -1,10 +1,5 @@
-$(document).ready(function(){
+$(document).ready(function() {
 	$('input[type=checkbox]').tzCheckbox({labels:['Habilidado','Deshabilitado']});
-    $('.close').click(function() {
-        //instrucciones
-        $('.container').css("display","none");
-        $("#mensaje_respuesta").html("");
-	});
     $('#btn_guardar').click(function() {
     	//instrucciones
     	$('.container').css("display","block");
@@ -26,6 +21,6 @@ $(document).ready(function(){
      function mostrarRespuesta (responseText){
 		          //alert("Mensaje enviado: "+responseText);
                   //$("#loader_gif").fadeOut("slow");
-                  $("#mensaje_respuesta").append("Mensaje: "+responseText+"<br />");
+                  $(".container").append(responseText+"<br />");
      };    
 });
