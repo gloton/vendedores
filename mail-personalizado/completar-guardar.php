@@ -19,6 +19,38 @@ include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
 $productos = $_POST;
 $nro_campos = count($productos);
 
+//validar ingreso de nombre
+if (!isset($productos["nombre"]) || empty($productos["nombre"])) {
+?>
+	<div class="row">  
+		<div class="span4">  
+			<div class="alert alert-error">  
+				<a class="close" data-dismiss="alert">×</a>
+				<div id="mensaje_respuesta">
+					<span>Error!:</span> Debe ingresar el nombre del cliente.
+				</div>
+			</div>  
+		</div>  
+	</div> 
+<?php 
+	exit();
+}
+//validar ingreso del mail
+if (!isset($productos["correo_cli"]) || empty($productos["correo_cli"])) {
+	?>
+	<div class="row">  
+		<div class="span4">  
+			<div class="alert alert-error">  
+				<a class="close" data-dismiss="alert">×</a>
+				<div id="mensaje_respuesta">
+					<span>Error!:</span> Debe ingresar el correo del cliente.
+				</div>
+			</div>  
+		</div>  
+	</div> 
+<?php 
+	exit();
+}
 $detalles =array();
 $i = 0;
 foreach ($productos as $indice => $valor) {
