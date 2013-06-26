@@ -49,7 +49,7 @@ switch ($nro_productos) {
 	    });
 	});
 </script>
-	<div id="row<?php echo $_SESSION["contador"]; ?>" class="row">  
+	<div class="row">  
 		<div class="span4">  
 			<div class="alert alert-error">  
 				<a class="close" data-dismiss="alert">×</a>
