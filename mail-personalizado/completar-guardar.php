@@ -241,7 +241,7 @@ if(!$mail->Send()) {
 	        			<div class="alert alert-success">  
 	        				<a class="close" data-dismiss="alert alert-success">×</a>
 	        				<div id="mensaje_respuesta">
-	        					<span>Se envio aviso!:</span> Se ha informado a Don Juan Tarrason el ingreso de un nuevo correo personalizado.
+	        					Se ha informado a Don Juan Tarrason el ingreso de un nuevo correo personalizado.
 	        				</div>
 	        			</div>  
 	        		</div>  
