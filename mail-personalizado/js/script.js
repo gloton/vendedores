@@ -21,7 +21,8 @@ $(document).ready(function() {
      function mostrarRespuesta (responseText){
 		          //alert("Mensaje enviado: "+responseText);
                   $("#loader_gif").fadeOut("slow");
-                  $(".container").append(responseText+"<br />");
+                  $("#wrap_alertas").css("display","block");
+                  $("#wrap_alertas").append(responseText+"<br />");
      };    
 });
 
