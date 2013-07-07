@@ -33,7 +33,7 @@ $(document).ready(function() {
 		$('#bc_detalle').click(function() {
 			//instrucciones
 			$('.paso').css("display","none");
-			$('#bc_detalle').css("display","block"); 
+			$('#detalle').css("display","block"); 
 			//alert("detalle");
 		});
 		//cuando se hace click en el paso 2
