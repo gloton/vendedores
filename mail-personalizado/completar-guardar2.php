@@ -55,7 +55,8 @@ $detalles =array();
 $i = 0;
 foreach ($productos as $indice => $valor) {
 	
-	if ($valor == "on") {
+	//si el checkbok tiene el valor de 
+	if ($valor == "detalle") {
 		$sql_detalle = "SELECT nombre,detalle FROM productos_mail WHERE id_produto=$indice";
 		$query_detalle = mysql_query($sql_detalle, Conectar::con()) or die("No se pudo ejecutar consulta");			
 		$detalles = mysql_fetch_array($query_detalle);

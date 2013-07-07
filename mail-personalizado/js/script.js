@@ -23,6 +23,32 @@ $(document).ready(function() {
                   $("#loader_gif").fadeOut("slow");
                   $("#wrap_alertas").css("display","block");
                   $("#wrap_alertas").append(responseText+"<br />");
-     };    
+     };
+     /*
+      * BREADCROUMBS CON LOS PASOS
+      * */
+		$( '#bc_detalle').trigger('click' );
+
+		//cuando se hace click en el paso 1
+		$('#bc_detalle').click(function() {
+			//instrucciones
+			$('.paso').css("display","none");
+			$('#bc_detalle').css("display","block"); 
+			//alert("detalle");
+		});
+		//cuando se hace click en el paso 2
+		$('#bc_ficha').click(function() {
+			//instrucciones
+			$('.paso').css("display","none");
+			$('#ficha').css("display","block"); 
+			//alert("detalle");
+		});
+		//cuando se hace click en el paso 3
+		$('#bc_aplicacion').click(function() {
+			//instrucciones
+			$('.paso').css("display","none");
+			$('#aplicacion').css("display","block"); 
+			//alert("detalle");
+		});
 });
 
