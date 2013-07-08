@@ -65,8 +65,10 @@ foreach ($productos as $indice => $valor) {
 		#el 0 es el primer campo que se llama en el select, en este caso nombre, por lo que [1] seria detalle
 		
 		//nombre de los productos
-		$body_nombre[$i] = $detalles[0];
+		$body_nombre[$i] = $detalles[2];
 		$i++;
+		//$body_detalles contendra el detalle de los productos elegidos
+		$body_detalles .= $detalles[4];
 	} elseif ($valor == "ficha") {
 		//echo '<script type="text/javascript">alert("'.++$j.'");</script>' ;
 		$sql_ficha = "SELECT id_ficha,nombre,enlace FROM fichas_mail WHERE nombre_ficha='$indice'";
@@ -76,8 +78,6 @@ foreach ($productos as $indice => $valor) {
 	}
 	
 	
-	//$body_detalles contendra el detalle de los productos elegidos
-	$body_detalles .= $detalles[1];
 }
 
 //imprimiendo en pantalla los detalles de los productos elegidos
