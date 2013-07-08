@@ -3,13 +3,13 @@ include_once("../../lib/class.php");
 //print_r($_SESSION);
 unset($_SESSION['mensaje']);
 //detalle
-$sql_productos_mail = "SELECT id_produto,nombre FROM productos_mail;";
+$sql_productos_mail = "SELECT id_produto,nombre_producto,nombre FROM productos_mail;";
 $query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die("No se realizo la consulta");
 //ficha
-$sql_fichas_mail = "SELECT id_ficha,nombre,enlace FROM fichas_mail;";
+$sql_fichas_mail = "SELECT id_ficha,nombre_ficha,nombre,enlace FROM fichas_mail;";
 $query_fichas_mail = mysql_query($sql_fichas_mail, Conectar::con()) or die("No se realizo la consulta");
 //aplicacione
-$sql_aplicaciones_mail = "SELECT id_aplicacion,nombre,lista FROM aplicaciiones_mail;";
+$sql_aplicaciones_mail = "SELECT id_aplicacion,nombre_aplicacion,nombre,lista FROM aplicaciiones_mail;";
 $query_aplicaciones_mail = mysql_query($sql_aplicaciones_mail, Conectar::con()) or die("No se realizo la consulta");
 ?>
 <!DOCTYPE html>
@@ -73,21 +73,21 @@ $query_aplicaciones_mail = mysql_query($sql_aplicaciones_mail, Conectar::con()) 
 			<input name="correo_cli" type="text" class="span3" placeholder="Escriba el correo..." />
     		<ul>
     		<?php while ($fila = mysql_fetch_array($query_productos_mail)) : ?>
-    		        	<li><label for="<?php echo $fila["id_produto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_produto"]; ?>" name="<?php echo $fila["id_produto"]; ?>" value="detalle" /></li>
+    		        	<li><label for="<?php echo $fila["nombre_producto"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["nombre_producto"]; ?>" name="<?php echo $fila["nombre_producto"]; ?>" value="detalle" /></li>
     		<?php endwhile; ?>
     		</ul>
     	</div>
     	<div id="ficha" class="paso">
     		<ul>
     		<?php while ($fila = mysql_fetch_array($query_fichas_mail)) : ?>
-    		        	<li><label for="<?php echo $fila["id_ficha"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_ficha"]; ?>" name="<?php echo $fila["id_ficha"]; ?>" value="ficha" /></li>
+    		        	<li><label for="<?php echo $fila["nombre_ficha"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["nombre_ficha"]; ?>" name="<?php echo $fila["nombre_ficha"]; ?>" value="ficha" /></li>
     		<?php endwhile; ?>
 			</ul>
     	</div>
     	<div id="aplicacion" class="paso"> 
 	    	<ul>
 	    	<?php while ($fila = mysql_fetch_array($query_aplicaciones_mail)) : ?>
-	        	<li><label for="<?php echo $fila["id_aplicacion"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["id_aplicacion"]; ?>" name="<?php echo $fila["id_aplicacion"]; ?>" value="aplicacion" /></li>
+	        	<li><label for="<?php echo $fila["nombre_aplicacion"]; ?>"><?php echo $fila["nombre"]; ?></label><input type="checkbox" id="<?php echo $fila["nombre_aplicacion"]; ?>" name="<?php echo $fila["nombre_aplicacion"]; ?>" value="aplicacion" /></li>
 	    	<?php endwhile; ?>
 	        </ul>
 	         <button id="btn_guardar" type="submit" class="btn">Guardar</button>

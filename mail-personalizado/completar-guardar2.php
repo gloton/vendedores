@@ -1,7 +1,6 @@
 <?php
 include_once '../../lib/class.php';
 include_once '../../lib/PHPMailer_5.2.2/class.phpmailer.php';
-
 //print_r($_SESSION);//Array ( [nombre] => Marcelo [id_perfil] => 4 [apellidos] => Salas [correo] => prueba1@w7.cl [id_usuario] => 204 [telefono] => 111111111 [perfil] => vendedor )
 ?>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
@@ -53,18 +52,27 @@ if (!isset($productos["correo_cli"]) || empty($productos["correo_cli"])) {
 }
 $detalles =array();
 $i = 0;
+$j = 0;
 foreach ($productos as $indice => $valor) {
 	
 	//si el checkbok tiene el valor de 
 	if ($valor == "detalle") {
-		$sql_detalle = "SELECT nombre,detalle FROM productos_mail WHERE id_produto=$indice";
-		$query_detalle = mysql_query($sql_detalle, Conectar::con()) or die("No se pudo ejecutar consulta");			
+		//echo '<script type="text/javascript">alert("'.++$j.'");</script>' ;
+		$sql_detalle = "SELECT * FROM `productos_mail` WHERE `nombre_producto`='$indice'";
+		$query_detalle = mysql_query($sql_detalle, Conectar::con()) or die("No se pudo ejecutar consulta a detalle");			
 		$detalles = mysql_fetch_array($query_detalle);
 		
 		#el 0 es el primer campo que se llama en el select, en este caso nombre, por lo que [1] seria detalle
 		
+		//nombre de los productos
 		$body_nombre[$i] = $detalles[0];
 		$i++;
+	} elseif ($valor == "ficha") {
+		//echo '<script type="text/javascript">alert("'.++$j.'");</script>' ;
+		$sql_ficha = "SELECT id_ficha,nombre,enlace FROM fichas_mail WHERE nombre_ficha='$indice'";
+		$query_ficha = mysql_query($sql_ficha, Conectar::con()) or die("No se pudo ejecutar consulta a detalle");
+		$fichas = mysql_fetch_array($query_ficha);
+		$lst_ficha .='<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file='.$fichas["enlace"].'" target="_blank">'.$fichas["nombre"].'</li>';
 	}
 	
 	
@@ -75,6 +83,9 @@ foreach ($productos as $indice => $valor) {
 //imprimiendo en pantalla los detalles de los productos elegidos
 //echo $body_detalles;
 
+/*$nro_productos cuenta el numero de productos enviados (con $valor == "detalle"), 
+esto es para validar el minimo y maximo de productos elegidos en el primer paso
+*/
 $nro_productos = count($body_nombre);
 
 switch ($nro_productos) {
@@ -140,19 +151,7 @@ $body_pie .= 'se despide';
 $body_pie .= '</p>';
 $body_pie .= '<h3>Fichas tecnicas</h3>';
 $body_pie .= '<ul>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=enzimark.pdf" target="_blank">Enzimark</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=mascuaja_nuevo_parte1.pdf" target="_blank">Mascuaja  Parte 1/2</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=mascuaja_nuevo_parte2.pdf" target="_blank">Mascuaja  Parte 2/2</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=micorrifort.pdf" target="_blank">Micorrifort</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=Multigranador.pdf" target="_blank">Multigranador</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=saniplant_parte1.pdf" target="_blank">Saniplant Parte 1/4</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=saniplant_parte2.pdf" target="_blank">Saniplant Parte 2/4</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=saniplant_parte3.pdf" target="_blank">Saniplant Parte 3/4</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=saniplant_parte4.pdf" target="_blank">Saniplant Parte 4/4</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=soluplant.pdf" target="_blank">Soluplant</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=indumax_foliar.pdf" target="_blank">Indumax Foliar</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=yoymark_parte1.pdf" target="_blank">Yoymark Parte 1/2</li>';
-$body_pie .= '<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file=yoymark_parte1.pdf" target="_blank">Yoymark Parte 2/2</li>';
+$body_pie .= $lst_ficha;
 $body_pie .= '</ul>';
 $body_pie .= '<p>';
 $body_pie .= $_SESSION["nombre"] . $_SESSION["apellidos"] . ' <br />';
