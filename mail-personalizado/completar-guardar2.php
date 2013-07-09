@@ -74,7 +74,16 @@ foreach ($productos as $indice => $valor) {
 		$sql_ficha = "SELECT id_ficha,nombre,enlace FROM fichas_mail WHERE nombre_ficha='$indice'";
 		$query_ficha = mysql_query($sql_ficha, Conectar::con()) or die("No se pudo ejecutar consulta a detalle");
 		$fichas = mysql_fetch_array($query_ficha);
-		$lst_ficha .='<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file='.$fichas["enlace"].'" target="_blank">'.$fichas["nombre"].'</li>';
+		$lst_ficha .='<li><a href="http://www.litar.cl/editor/mail-personalizado/descargar_pdf.php?file='.$fichas["enlace"].'" target="_blank">'.$fichas["nombre"].'</a></li>';
+	} elseif ($valor == "aplicacion") {
+		//echo '<script type="text/javascript">alert("'.++$j.'");</script>' ;
+		$sql_aplicacion = "SELECT id_aplicacion,nombre_aplicacion,nombre,lista FROM aplicaciones_mail WHERE nombre_aplicacion='$indice'";
+		$query_aplicacion = mysql_query($sql_aplicacion, Conectar::con()) or die("No se pudo ejecutar consulta a detalle");
+		$aplicacion = mysql_fetch_array($query_aplicacion);
+		$lst_aplicacion .='<h5>'.$aplicacion["nombre"].'</h5>';
+		$lst_aplicacion .= '<ul>';
+		$lst_aplicacion .=$aplicacion["lista"];
+		$lst_aplicacion .= '</ul>';
 	}
 	
 	
@@ -153,8 +162,10 @@ $body_pie .= '<h3>Fichas tecnicas</h3>';
 $body_pie .= '<ul>';
 $body_pie .= $lst_ficha;
 $body_pie .= '</ul>';
+$body_pie .= '<h3>Programa de Aplicaciones</h3>';
+$body_pie .= $lst_aplicacion;
 $body_pie .= '<p>';
-$body_pie .= $_SESSION["nombre"] . $_SESSION["apellidos"] . ' <br />';
+$body_pie .= $_SESSION["nombre"] . " " . $_SESSION["apellidos"] . ' <br />';
 $body_pie .= 'Telefono : ' .$_SESSION["telefono"] .'<br />';
 $body_pie .= 'Mail : '. $_SESSION["correo"] .'<br />';
 $body_pie .= '<a href="http://www.litar.cl">www.litar.cl</a>';
@@ -167,7 +178,7 @@ $body_cuerpo = $body_cabecera . $body_detalles . $body_pie;
 $sql_agregar_contenido = "INSERT INTO `litarcl_bdlitar`.`mails_personalizados` (`id`, `nombre_remitente`, `mail_remitente`, `nombre_destinatario`, `mail_destinatario`, `contenido`, `id_usuario`, `estado`) VALUES
 						 (
 						  NULL,
-						 '". $_SESSION["nombre"] . $_SESSION["apellidos"] ."',
+						 '". $_SESSION["nombre"] . " " . $_SESSION["apellidos"] ."',
 						 '". $_SESSION["correo"] ."',
 						 '". htmlspecialchars($productos["nombre"], ENT_QUOTES) ."',
 						 '". htmlspecialchars($productos["correo_cli"], ENT_QUOTES) ."',

@@ -4,13 +4,13 @@ include_once("../../lib/class.php");
 unset($_SESSION['mensaje']);
 //detalle
 $sql_productos_mail = "SELECT id_produto,nombre_producto,nombre FROM productos_mail;";
-$query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die("No se realizo la consulta");
+$query_productos_mail = mysql_query($sql_productos_mail, Conectar::con()) or die("No se realizo la consulta productos");
 //ficha
 $sql_fichas_mail = "SELECT id_ficha,nombre_ficha,nombre,enlace FROM fichas_mail;";
-$query_fichas_mail = mysql_query($sql_fichas_mail, Conectar::con()) or die("No se realizo la consulta");
+$query_fichas_mail = mysql_query($sql_fichas_mail, Conectar::con()) or die("No se realizo la consulta fichas");
 //aplicacione
-$sql_aplicaciones_mail = "SELECT id_aplicacion,nombre_aplicacion,nombre,lista FROM aplicaciiones_mail;";
-$query_aplicaciones_mail = mysql_query($sql_aplicaciones_mail, Conectar::con()) or die("No se realizo la consulta");
+$sql_aplicaciones_mail = "SELECT id_aplicacion,nombre_aplicacion,nombre,lista FROM aplicaciones_mail;";
+$query_aplicaciones_mail = mysql_query($sql_aplicaciones_mail, Conectar::con()) or die("No se realizo la consulta aplicaciones");
 ?>
 <!DOCTYPE html>
 <html>
